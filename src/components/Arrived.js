@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/anchor-has-content */
 function Arrived() {
   return (
-    <section className="flex flex-col py-16">
+    <section className="flex flex-col py-16 font-Josefin">
       <div className="container mx-auto mb-4">
         <div className="flex justify-center text-center mb-4">
           <h3 className="text-2xl capitalize font-semibold">

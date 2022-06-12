@@ -8,9 +8,9 @@ function Hero() {
     setShowModal(!showModal);
   }
   return (
-    <section className="flex items-center hero">
-      <div className="w-full absolute z-20 inset-0 md:relative md:w-1/2 text-center flex flex-col justify-center hero-caption">
-        <h1 className="text-3xl md:text-5xl leading-tight font-semibold">
+    <section className="flex items-center hero ">
+      <div className="w-full absolute z-20 inset-0 md:relative md:w-1/2 text-center flex flex-col justify-center hero-caption font-Josefin">
+        <h1 className="text-3xl md:text-5xl leading-tight  font-semibold ">
           The Room <br className="" />
           You've Dreaming
         </h1>

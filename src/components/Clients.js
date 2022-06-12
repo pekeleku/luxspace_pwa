@@ -1,6 +1,6 @@
 function Clients() {
   return (
-    <section className="container mx-auto">
+    <section className="container mx-auto font-Josefin">
       <div className="flex justify-center flex-wrap">
         <div className="w-full flex-auto md:w-auto md:flex-initial px-4 md:px-6 my-4 md:my-0">
           <img

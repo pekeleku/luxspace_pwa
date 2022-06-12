@@ -1,6 +1,6 @@
 function Header() {
   return (
-    <header className="absolute w-full z-50 px-4">
+    <header className="absolute w-full z-50 px-4 font-Josefin">
       <div className="container mx-auto py-5">
         <div className="flex flex-stretch items-center">
           <div className="w-56 items-center flex">
