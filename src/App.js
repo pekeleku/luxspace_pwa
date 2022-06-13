@@ -1,5 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
+//component
 import Header from "./components/Header";
 import Hero from "./components/Hero";
 import Browse from "./components/Browse";
@@ -8,8 +9,10 @@ import Clients from "./components/Clients";
 import AsideMenu from "./components/AsideMenu";
 import Footer from "./components/Footer";
 import Offline from "./components/Offline";
+// pages
 import Splash from "./pages/Splash";
 import Profile from "./pages/Profile";
+import Details from "./pages/Details";
 function App() {
   const [items, setItems] = React.useState([]);
   const [offlineStatus, setOfflineStatus] = React.useState(!navigator.onLine);
@@ -61,7 +64,7 @@ function App() {
       ) : (
         <>
           {offlineStatus && <Offline />}
-          <Header />;
+          <Header mode="light" />;
           <Hero />;
           <Browse />;
           <Arrived items={items} />;
@@ -79,6 +82,7 @@ export default function Routes() {
     <Router>
       <Route path="/" exact component={App} />
       <Route path="/profile" exact component={Profile} />
+      <Route path="/details/:id" component={Details} />
     </Router>
   );
 }

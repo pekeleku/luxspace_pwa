@@ -1,13 +1,17 @@
 import { Link } from "react-router-dom";
 
-function Header() {
+function Header({ mode }) {
   return (
-    <header className="absolute w-full z-50 px-4 font-Josefin">
+    <header
+      className={`${
+        mode === "light" ? "absolute" : ""
+      } w-full z-50 px-4 font-Josefin`}
+    >
       <div className="container mx-auto py-5">
         <div className="flex flex-stretch items-center">
           <div className="w-56 items-center flex">
             <img
-              src="images/content/logo.png"
+              src="../images/content/logo.png"
               alt="Luxspace | Fulfill your house with beautiful furniture"
             />
           </div>
@@ -20,7 +24,9 @@ function Header() {
               <li className="mx-3 py-6 md:py-0">
                 <a
                   href="/"
-                  className="text-black md:text-white hover:underline"
+                  className={`text-black ${
+                    mode === "light" ? " md:text-white " : " md:text-black "
+                  } hover:underline`}
                 >
                   Showcase
                 </a>
@@ -28,7 +34,9 @@ function Header() {
               <li className="mx-3 py-6 md:py-0">
                 <a
                   href="/"
-                  className="text-black md:text-white hover:underline"
+                  className={`text-black ${
+                    mode === "light" ? " md:text-white " : " md:text-black "
+                  } hover:underline`}
                 >
                   Catalog
                 </a>
@@ -36,7 +44,9 @@ function Header() {
               <li className="mx-3 py-6 md:py-0">
                 <a
                   href="/"
-                  className="text-black md:text-white hover:underline"
+                  className={`text-black ${
+                    mode === "light" ? " md:text-white " : " md:text-black "
+                  } hover:underline`}
                 >
                   Delivery
                 </a>
@@ -44,7 +54,9 @@ function Header() {
               <li className="mx-3 py-6 md:py-0">
                 <Link
                   to="/profile"
-                  className="text-black md:text-white hover:underline"
+                  className={`text-black ${
+                    mode === "light" ? " md:text-white " : " md:text-black "
+                  } hover:underline`}
                 >
                   Profile
                 </Link>
