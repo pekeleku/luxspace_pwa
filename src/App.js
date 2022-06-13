@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 //component
 import Header from "./components/Header";
 import Hero from "./components/Hero";
@@ -13,7 +13,8 @@ import Offline from "./components/Offline";
 import Splash from "./pages/Splash";
 import Profile from "./pages/Profile";
 import Details from "./pages/Details";
-function App() {
+import Cart from "./pages/Cart";
+function App({ cart }) {
   const [items, setItems] = React.useState([]);
   const [offlineStatus, setOfflineStatus] = React.useState(!navigator.onLine);
   const [isLoading, setIsLoading] = React.useState(true);
@@ -64,13 +65,13 @@ function App() {
       ) : (
         <>
           {offlineStatus && <Offline />}
-          <Header mode="light" />;
-          <Hero />;
-          <Browse />;
-          <Arrived items={items} />;
-          <Clients />;
-          <AsideMenu />;
-          <Footer />;
+          <Header mode="light" cart={cart} />
+          <Hero />
+          <Browse />
+          <Arrived items={items} />
+          <Clients />
+          <AsideMenu />
+          <Footer />
         </>
       )}
     </>
@@ -78,11 +79,46 @@ function App() {
 }
 
 export default function Routes() {
+  const cachedCart = window.localStorage.getItem("cart");
+  const [cart, setCart] = React.useState([]);
+  function handleAddToCart(item) {
+    const currentIndex = cart.length;
+    const newCart = [...cart, { id: currentIndex + 1, item }];
+    setCart(newCart);
+    window.localStorage.setItem("cart", JSON.stringify(newCart));
+  }
+
+  function handleRemoveCartItem(event, id) {
+    const revisedCart = cart.filter(function (item) {
+      return item.id !== id;
+    });
+    setCart(revisedCart);
+    window.localStorage.setItem("cart", JSON.stringify(revisedCart));
+  }
+
+  React.useEffect(
+    function () {
+      console.info("useEffect for localStorage");
+      if (cachedCart !== null) {
+        setCart(JSON.parse(cachedCart));
+      }
+    },
+    [cachedCart]
+  );
   return (
     <Router>
-      <Route path="/" exact component={App} />
-      <Route path="/profile" exact component={Profile} />
-      <Route path="/details/:id" component={Details} />
+      <Route path="/" exact>
+        <App cart={cart} />
+      </Route>
+      <Route path="/profile" exact>
+        <Profile cart={cart} />
+      </Route>
+      <Route path="/details/:id">
+        <Details handleAddToCart={handleAddToCart} cart={cart} />
+      </Route>
+      <Route path="/cart">
+        <Cart cart={cart} handleRemoveCartItem={handleRemoveCartItem} />
+      </Route>
     </Router>
   );
 }
